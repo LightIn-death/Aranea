@@ -4,7 +4,7 @@ from flask_sqlalchemy import  SQLAlchemy
 
 
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder="pages")
 app.secret_key = "hello"
 app.permanent_session_lifetime = timedelta(minutes=5)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.sqlite3'
@@ -46,7 +46,7 @@ def login():
         flash("Login Succesful ! ")
         return redirect(url_for("user"))
     else:
-        return render_template("login.html")
+        return render_template("login/login.html")
 
 
 @app.route("/user", methods=["Post","Get"])
