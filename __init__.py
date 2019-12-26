@@ -14,13 +14,23 @@ app.permanent_session_lifetime = timedelta(minutes=5)
 
 
 
-@app.route("/home/")
+
 @app.route("/")
-def home():
+def construct():
     return render_template("errors/under-construct.html")
 
 
+@app.route("/wellcome/")
+def wellcome():
+    return render_template("public/wellcome.html")
 
+@app.route("/SignIn/")
+def SignIn():
+    return render_template("public/wellcome.html")
+
+@app.route("/Register/")
+def Register():
+    return render_template("public/wellcome.html")
 
 
 
