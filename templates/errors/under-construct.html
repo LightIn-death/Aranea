@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <link rel="icon" href="{{ url_for('static',filename='img/logo.svg' )}}"> 
+
+
+    <title>Under Construct</title>
+</head>
+<body>
+
+
+
+
+<div class="container-fluid">
+
+<style>
+  body { text-align: center; padding: 150px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  background-color: rgba(212, 103, 103, 0.781);
+  background-image: url({{ url_for('static',filename='img/logo.svg' )}});}
+  h1 { font-size: 50px; }
+  body { font: 20px Helvetica, sans-serif; color:rgb(206, 250, 253); }
+  article { display: block; text-align: center; margin: 0 auto; }
+  a { color: #dc8100; text-decoration: none; }
+  a:hover { color: #333; text-decoration: none; }
+</style>
+
+<article>
+    <h1>We&rsquo;ll be back soon!</h1>
+    <div>
+        <p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always <a href="mailto:contact@aranea.me">contact us</a>, otherwise we&rsquo;ll be back online shortly!</p>
+        <p>&mdash; Aranea Team</p>
+    </div>
+</article>
+
+</div>
+
+
+</body>
+</html>
