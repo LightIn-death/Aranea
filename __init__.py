@@ -16,10 +16,6 @@ app.permanent_session_lifetime = timedelta(minutes=5)
 
 
 @app.route("/")
-def construct():
-    return render_template("errors/under-construct.html")
-
-
 @app.route("/wellcome/")
 def wellcome():
     return render_template("public/wellcome.html")
@@ -28,9 +24,9 @@ def wellcome():
 def SignIn():
     return render_template("public/wellcome.html")
 
-@app.route("/Register/")
+@app.route("/register/")
 def Register():
-    return render_template("public/wellcome.html")
+    return render_template("public/register.html")
 
 
 
@@ -40,7 +36,8 @@ def Register():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('errors/404.html'), 404
+    return render_template("errors/under-construct.html")
+    # return render_template('errors/404.html'), 404
 
 # ----------------------------------------------------------------------------  LAUNCH APP --------------------------------- +
 

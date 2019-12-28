@@ -38,8 +38,8 @@ body {
 	flex-direction: column;
 	flex-wrap: nowrap;
 	align-items: center;
-	justify-content: stretch;
-	height: 100vh;
+	justify-content: space-evenly;
+	height:  calc(100vh - 89px);
 }
 
 .flex-child {
@@ -55,10 +55,10 @@ p {
 
 a {
 	text-decoration: none;
-	background-color: #b40500;
-	border: #b40500 solid 1px;
+	background-color: #a54946;
+	border: #b34f4c solid 1px;
 	border-radius: 10px;
-	color: black;
+	color: rgb(255, 255, 255);
 	padding: 10px;
 }
 
