@@ -1,54 +1,37 @@
-{# ------------------------------------------------------------------------- HEAD ---------------------------------------------------------------------------  #}
-<!doctype html>
+{# -------------------------------------------------------------------------
+HEAD ---------------------------------------------------------------------------
+#}
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="A New Social Network. ARANEA" name="description">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="A New Social Network. ARANEA" name="description" />
 
-    <link href="{{ url_for('static',filename='img/logo.svg' )}}" rel="icon">
-  {#   <link href="{{ url_for('static',filename='css/Public.css' )}}" rel="stylesheet"> #}
+    <link href="{{ url_for('static',filename='img/logo.svg' )}}" rel="icon" />
+    <link
+      href="{{ url_for('static',filename='css/Public.css' )}}"
+      rel="stylesheet"
+    />
 
     <title>&ndash;{% block title %}{% endblock %}&ndash;</title>
-</head>
-<body>
+  </head>
+  <body>
+    {# -------------------------------------- HEADER
+    --------------------------------------------- #}
 
-
-{# -------------------------------------- HEADER --------------------------------------------- #}
-
-<div>
-    <ul class="nav">
-        <li><img id="logo" src='../static/img/logo.svg' alt="logo"></li>
+    <div>
+      <ul class="nav">
+        <li><img id="logo" src="../static/img/logo.svg" alt="logo" /></li>
         <li><a id="siteName" href="/">AraneA</a></li>
-    </ul>
-</div>
+      </ul>
+    </div>
 
-
-{# -------------------------------------- CONTENT --------------------------------------------- #}
-
-
-
-    {% block content %}
-    {% endblock %}
-
-
-
-{# -------------------------------------- FOOTER --------------------------------------------- #}
-
-
-
-{# -------------------------------------- END --------------------------------------------- #}
-
-</body>
+    {# -------------------------------------- CONTENT
+    --------------------------------------------- #} {% block content %} {%
+    endblock %} {# -------------------------------------- FOOTER
+    --------------------------------------------- #} {#
+    -------------------------------------- END
+    --------------------------------------------- #}
+  </body>
 </html>
-
-
-
-
-
-
-     
-
-
-
-
