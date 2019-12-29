@@ -1,10 +1,26 @@
 {% extends "public/pub-base.html" %}
-{% block title %}Sign In{% endblock %}
+{% block title %}Register{% endblock %}
 {% block content %}
 
-<h1>Connexion</h1>
+<div>
+    <div id="content">
+        <h2>Sign In</h2>
+        <form action="">
+        
+        <input type="email" name="email" placeholder="email">
+        <input type="password" name="password" placeholder="password">
 
+        <div class="form_button">
+            <a class="secondary_button" href="/forgot_password">forgot password</a>
+            <input class="submit" type="submit" name="signin" value="Sign In !">
+        </div>
+
+
+        
+        </form>
+        
+    </div>
+</div>
 
 {% endblock %}
-
 

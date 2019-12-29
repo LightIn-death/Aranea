@@ -22,7 +22,7 @@ def wellcome():
 
 @app.route("/SignIn/")
 def SignIn():
-    return render_template("public/wellcome.html")
+    return render_template("public/signIn.html")
 
 @app.route("/register/")
 def Register():
