@@ -23,8 +23,8 @@ class Users(db.Model):
     description = db.Column('description', db.VARCHAR)
     age = db.Column('age', db.DATE)
     photo = db.Column('photo', db.VARCHAR)
-    score = db.Column('score', db.INTEGER)
-    mood = db.Column('mood', db.INTEGER)
+    score = db.Column('score', db.INTEGER, default=0)
+    mood = db.Column('mood', db.INTEGER, default=0)
 
 
 class Messages(db.Model):
@@ -54,18 +54,72 @@ class Relations(db.Model):
 
 @app.route("/")
 @app.route("/wellcome/")
-def wellcome():
-    return render_template("public/wellcome.html")
+def Wellcome():
+    print(session)
+    if session.get('auth') == None:
+        return render_template("public/wellcome.html")
+    else:
+        return redirect(url_for('home'))
 
 
-@app.route("/SignIn/")
+@app.route("/home/")
+def home():
+    if session["auth"] == None:
+        return render_template("public/wellcome.html")
+    else:
+        return render_template("private/home.html")
+
+
+@app.route("/logout/")
+def logout():
+    session.pop("auth")
+    return redirect(url_for('Wellcome'))
+
+
+@app.route("/SignIn/", methods=["GET", "POST"])
 def SignIn():
-    return render_template("public/signIn.html")
+    if request.method != "POST":
+        return render_template("public/signIn.html")
+    else:
+
+        _email = request.form['email']
+        _password = request.form['password']
+        user = Users.query.filter_by(email=_email, password=_password).first()
+        if user:
+            session["auth"] = True
+            session["email"] = user.email
+            session["username"] = user.username
+            session["description"] = user.description
+            session["age"] = user.age
+            session["photo"] = user.photo
+            session["score"] = user.score
+            session["mood"] = user.mood
+            # f'{session["email"]} {session["username"]} {session["description"]} {session["age"]} {session["photo"]} {session["score"]} {session["mood"]}'
+            return redirect(url_for('home'))
+        else:
+            return render_template("public/signIn.html")
 
 
-@app.route("/register/")
+@app.route("/register/", methods=["GET", "POST"])
 def Register():
-    return render_template("public/register.html")
+    if request.method != "POST":
+        return render_template("public/register.html")
+    else:
+        _username = request.form['username']
+        _email = request.form['email']
+        _password = request.form['password']
+        _password_check = request.form['password-check']
+        if _password == _password_check:
+            newUser = Users(
+                username=_username,
+                email=_email,
+                password=_password
+            )
+            db.session.add(newUser)
+            db.session.commit()
+            return redirect(url_for('SignIn'))
+        else:
+            return render_template("public/register.html")
 
 
 # ----------------------------------------------------------------------------  ERROR HTTP --------------------------------- +
