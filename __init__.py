@@ -74,9 +74,17 @@ def conv():
     if session.get('auth') == None:
         return redirect(url_for('Wellcome'))
     else:
-        listConv = Relations.query.filter((Relations.user1_id == 8) | (Relations.user2_id == 8)).all()
+        id = session["id"]
+        RelationList = Relations.query.filter((Relations.user1_id == id) | (Relations.user2_id == id)).all()
+        UserList = []
+        for conv in RelationList:
+            if conv.user1_id != id:
+                usr = conv.user1_id
+            if conv.user2_id != id:
+                usr = conv.user2_id
+            UserList.append(Users.query.filter_by(id_user=usr).first())
 
-        return render_template("private/convs.html", liste=listConv, id=session["id"])
+        return render_template("private/convs.html", RelationList=RelationList, id=id, UserList=UserList)
 
 
 @app.route("/message/", methods=["GET", "POST"])
@@ -85,17 +93,21 @@ def message():
         return redirect(url_for('Wellcome'))
     else:
         if request.method == "POST":
-            _content = request.form['text']
-            if _content != "":
-                newMessage = Messages(
-                    content=_content,
-                    from_id=session['id'],
-                    in_relation_id=2,
-                    send_time=datetime.now()
-                )
-                db.session.add(newMessage)
-                db.session.commit()
-        messages = Messages.query.filter_by(in_relation_id=2).all()
+            if request.form['btn'] == "send":
+                _content = request.form['text']
+                if _content != "":
+                    newMessage = Messages(
+                        content=_content,
+                        from_id=session['id'],
+                        in_relation_id=session["rel_id"],
+                        send_time=datetime.now()
+                    )
+                    db.session.add(newMessage)
+                    db.session.commit()
+            else:
+                session["rel_id"] = request.form['rel_id']
+            rel_id = session["rel_id"]
+        messages = Messages.query.filter_by(in_relation_id=rel_id).all()
         return render_template("private/message.html", messages=messages, id=session['id'])
 
 

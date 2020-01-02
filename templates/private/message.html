@@ -1,5 +1,5 @@
 {% extends "private/pub-base.html" %}
-{% block title %}Register{% endblock %}
+{% block title %}Messages{% endblock %}
 {% block content %}
 
     <div>
@@ -37,7 +37,7 @@
             <div class="input">
                 <form method="post">
                     <input type="text" name="text" placeholder="type here" autofocus>
-                    <button type="submit">Send</button>
+                    <button type="submit" name="btn" value="send">send</button>
                 </form>
             </div>
             {#--------------------------------------------------------#}

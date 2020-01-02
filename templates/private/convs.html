@@ -1,19 +1,24 @@
 {% extends "private/pub-base.html" %}
-{% block title %}Register{% endblock %}
+{% block title %}Contact{% endblock %}
 {% block content %}
 
     <div>
         <div id="content">
             <h2> Aranea Convs List :</h2>
             <ul>
-                <li>{{ liste }}</li>
-                {% for li in liste %}
-                    {% if li.user1_id != id %}
-                        <li>{{ li.user1_id }}</li>
-                    {% endif %}
-                    {% if li.user2_id != id %}
-                        <li>{{ li.user2_id }}</li>
-                    {% endif %}
+                {#                <li>{{ RelationList }}</li>#}
+                {#                <li>{{ UserList }}</li>#}
+                {% for rel in RelationList %}
+                    {% for usr in UserList %}
+                        {% if rel.user1_id == usr.id_user or rel.user2_id == usr.id_user %}
+                            <li>
+                                <form action="{{ url_for('message') }}" method="post">
+                                    <input type="hidden" name="rel_id" value="{{ rel.id_relation }}">
+                                    <button type="submit" name="btn">{{ usr.username }}</button>
+                                </form>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
                 {% endfor %}
             </ul>
 
