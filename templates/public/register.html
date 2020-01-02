@@ -2,26 +2,25 @@
 {% block title %}Register{% endblock %}
 {% block content %}
 
-<div>
-    <div id="content">
-        <h2>Register into Aranea</h2>
-        <form action="">
-        
-        <input type="text" name="username" placeholder="username">
-        <input type="email" name="email" placeholder="email">
-        <input type="password" name="password" placeholder="password">
-        <input type="password" name="password-check" placeholder="password-check">
-        <div class="form_button">
-            <a class="secondary_button" href="/SignIn">Sign In</a>
-            <input class="submit" type="submit" name="register" value="Register !">
+    <div>
+        <div id="content">
+            <h2>Register into Aranea</h2>
+            <form method="post">
+
+                <input type="text" name="username" placeholder="username">
+                <input type="email" name="email" placeholder="email">
+                <input type="password" name="password" placeholder="password">
+                <input type="password" name="password-check" placeholder="password-check">
+                <div class="form_button">
+                    <a class="secondary_button" href="/SignIn">Sign In</a>
+                    <input class="submit" type="submit" name="register" value="Register !">
+                </div>
+
+
+            </form>
+
         </div>
-
-
-        
-        </form>
-        
     </div>
-</div>
 
 {% endblock %}
 
