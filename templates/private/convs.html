@@ -1,0 +1,26 @@
+{% extends "private/pub-base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+
+    <div>
+        <div id="content">
+            <h2> Aranea Convs List :</h2>
+            <ul>
+                <li>{{ liste }}</li>
+                {% for li in liste %}
+                    {% if li.user1_id != id %}
+                        <li>{{ li.user1_id }}</li>
+                    {% endif %}
+                    {% if li.user2_id != id %}
+                        <li>{{ li.user2_id }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+            <a href="/message">Message</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+

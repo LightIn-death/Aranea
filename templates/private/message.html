@@ -1,0 +1,49 @@
+{% extends "private/pub-base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+
+    <div>
+        <div id="content">
+
+            <h2>Messages</h2>
+
+            {#-------------------------------------------------------#}
+
+
+            <div class="display">
+
+                Message ici :
+                <ul>
+                    {% for message in messages %}
+                        <li>
+                            {% if message.from_id != id %}
+                                >>>>>
+                            {% endif %}
+                            {{ message.content }}
+                            {% if message.from_id == id %}
+                                <<<<<
+                            {% endif %}
+
+                        </li>
+                    {% endfor %}
+                </ul>
+
+
+            </div>
+
+            {#--------------------------------------------------------#}
+
+
+            <div class="input">
+                <form method="post">
+                    <input type="text" name="text" placeholder="type here" autofocus>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+            {#--------------------------------------------------------#}
+
+        </div>
+    </div>
+
+{% endblock %}
+

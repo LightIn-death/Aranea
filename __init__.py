@@ -1,14 +1,14 @@
 # ----------------------------------------------------------------------------  IMPORT ------------------------------------ +
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from flask_sqlalchemy import SQLAlchemy
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 # ----------------------------------------------------------------------------  CONFIG APP -------------------------------- +
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/aranea'
 app.secret_key = "A!zefé;:é-è_à@"
-app.permanent_session_lifetime = timedelta(minutes=5)
+app.permanent_session_lifetime = timedelta(days=7)
 db = SQLAlchemy(app)
 
 
@@ -55,7 +55,6 @@ class Relations(db.Model):
 @app.route("/")
 @app.route("/wellcome/")
 def Wellcome():
-    print(session)
     if session.get('auth') == None:
         return render_template("public/wellcome.html")
     else:
@@ -64,10 +63,40 @@ def Wellcome():
 
 @app.route("/home/")
 def home():
-    if session["auth"] == None:
-        return render_template("public/wellcome.html")
+    if session.get('auth') == None:
+        return redirect(url_for('Wellcome'))
     else:
         return render_template("private/home.html")
+
+
+@app.route("/conv/")
+def conv():
+    if session.get('auth') == None:
+        return redirect(url_for('Wellcome'))
+    else:
+        listConv = Relations.query.filter((Relations.user1_id == 8) | (Relations.user2_id == 8)).all()
+
+        return render_template("private/convs.html", liste=listConv, id=session["id"])
+
+
+@app.route("/message/", methods=["GET", "POST"])
+def message():
+    if session.get('auth') == None:
+        return redirect(url_for('Wellcome'))
+    else:
+        if request.method == "POST":
+            _content = request.form['text']
+            if _content != "":
+                newMessage = Messages(
+                    content=_content,
+                    from_id=session['id'],
+                    in_relation_id=2,
+                    send_time=datetime.now()
+                )
+                db.session.add(newMessage)
+                db.session.commit()
+        messages = Messages.query.filter_by(in_relation_id=2).all()
+        return render_template("private/message.html", messages=messages, id=session['id'])
 
 
 @app.route("/logout/")
@@ -87,6 +116,7 @@ def SignIn():
         user = Users.query.filter_by(email=_email, password=_password).first()
         if user:
             session["auth"] = True
+            session["id"] = user.id_user
             session["email"] = user.email
             session["username"] = user.username
             session["description"] = user.description
