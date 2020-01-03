@@ -76,6 +76,20 @@ a {
     padding: 10px;
 }
 
+ul {
+    list-style: none;
+}
+
+button {
+    text-decoration: none;
+    background-color: #a56645;
+    border: #b33e53 solid 1px;
+    border-radius: 8px;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    margin: 5px;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -129,7 +143,30 @@ input {
 }
 
 
+.display {
+    overflow: scroll;
+    max-height: 400px;
+    width: 70vw;
 
+}
+
+.message {
+    border: solid 2px #a54946;
+    margin-top: 20px;
+    padding: 5px;
+    color: #a54946;
+
+}
+
+.in {
+    margin-right: 6vw;
+    border-radius: 0 8px 8px 8px;
+}
+
+.out {
+    margin-left: 6vw;
+    border-radius: 8px 8px 0 8px;
+}
 
 
 

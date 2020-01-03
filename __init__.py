@@ -5,11 +5,13 @@ from flask import Flask, redirect, url_for, render_template, request, session
 from flask_sqlalchemy import SQLAlchemy
 
 from process import *
+from Config import CONFIG
 
 # ----------------------------------------------------------------------------  CONFIG APP -------------------------------- +
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:''@localhost/aranea'
+app.config[
+    'SQLALCHEMY_DATABASE_URI'] = f'mysql://{CONFIG.db_Username}:{CONFIG.db_Password}@{CONFIG.db_Host}/{CONFIG.db_Database}'
 app.secret_key = "Aezfef"
 app.permanent_session_lifetime = timedelta(days=7)
 db = SQLAlchemy(app)
@@ -35,7 +37,7 @@ class Messages(db.Model):
     id_message = db.Column('id_message', db.INTEGER, primary_key=True)
     send_time = db.Column('send_time', db.DATETIME)
     receive_time = db.Column('receive_time', db.DATETIME)
-    content = db.Column('content', db.VARCHAR)
+    content = db.Column('content', db.TEXT)
     img_link = db.Column('img_link', db.VARCHAR)
 
     from_id = db.Column(db.INTEGER, db.ForeignKey('users.id_user'))
@@ -244,6 +246,11 @@ def Register():
             return redirect(url_for('SignIn'))
         else:
             return render_template("public/register.html")
+
+
+@app.route("/profile/")
+def profile():
+    return render_template("private/profile.html")
 
 
 # ----------------------------------------------------------------------------  ERROR HTTP --------------------------------- +
