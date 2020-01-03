@@ -10,22 +10,19 @@
             {#-------------------------------------------------------#}
 
 
-            <div class="display">
-
-                Message ici :
+            <div class="display">Message ici :
                 <ul>
                     {% for message in messages %}
                         <li>
                             {% if message.from_id != id %}
-                                >>>>>
-                            {% endif %}
-                            {{ message.content }}
-                            {% if message.from_id == id %}
-                                <<<<<
+                                <div class="in message"> {{ message.content }} </div>
+                            {% elif message.from_id == id %}
+                                <div class="out message"> {{ message.content }} </div>
                             {% endif %}
 
                         </li>
                     {% endfor %}
+                    <span id="down"></span>
                 </ul>
 
 
@@ -40,6 +37,7 @@
                     <button type="submit" name="btn" value="send">send</button>
                 </form>
             </div>
+            <a href="/conv">Retour</a>
             {#--------------------------------------------------------#}
 
         </div>
