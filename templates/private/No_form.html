@@ -1,0 +1,28 @@
+{% extends "private/pub-base.html" %}
+{% block title %}Wellcome{% endblock %}
+{% block content %}
+
+    <div>
+        <div id="content">
+            <h2> Pas de Nouveau formulaire Pour toi</h2>
+
+            <a href="/forms">Retour</a>
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+__tablename__ = "reps"
+id_rep = db.Column('id_rep', db.INTEGER, primary_key=True)
+
+reponse1 = db.Column('reponse1', db.INTEGER)
+reponse2 = db.Column('reponse2', db.VARCHAR)
+reponse3 = db.Column('reponse3', db.INTEGER)
+
+user_id = db.Column('user_id', db.INTEGER)
+form_id = db.Column('form_id', db.INTEGER)
+
