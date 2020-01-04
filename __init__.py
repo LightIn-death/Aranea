@@ -264,4 +264,4 @@ def page_not_found(e):
 # ----------------------------------------------------------------------------  LAUNCH APP --------------------------------- +
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host=CONFIG.app_Host, port=CONFIG.app_Port)
