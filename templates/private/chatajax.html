@@ -1,0 +1,10 @@
+{% for message in messages %}
+    <li>
+        {% if message.from_id != id %}
+            <div class="in message"> {{ message.content }} </div>
+        {% elif message.from_id == id %}
+            <div class="out message"> {{ message.content }} </div>
+        {% endif %}
+    </li>
+{% endfor %}
+
