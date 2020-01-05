@@ -260,7 +260,7 @@ def Register():
 
 @app.route("/profile/")
 def profile():
-    return render_template("private/profile.html")
+    return render_template("private/profile.html", session=session)
 
 
 # ----------------------------------------------------------------------------  ERROR HTTP --------------------------------- +
