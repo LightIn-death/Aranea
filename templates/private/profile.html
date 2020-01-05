@@ -4,8 +4,21 @@
 
     <div>
         <div id="content">
-            <h2> Profile :</h2>
-            <a href="/home">Retour</a>
+            <h2> {{ session["username"] }} </h2>
+
+            <p>Photo : {{ session["photo"] }} </p>
+
+
+            <p>Description : {{ session["description"] }}</p>
+            <p>Score : {{ session["score"] }}</p>
+            <p>Mood : {{ session["mood"] }}</p>
+            <p>Age : {{ session["age"] }}</p>
+            <p>Email : {{ session["email"] }}</p>
+
+            {#            session["auth"] = True#}
+
+            <a href="/profileUpdate">Update</a>
+            <a href="/home">Back</a>
             <a href="/logout">Log Out <i class="fas fa-sign-out-alt"></i></a>
         </div>
     </div>

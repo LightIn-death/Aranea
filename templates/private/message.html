@@ -10,18 +10,8 @@
             {#-------------------------------------------------------#}
 
 
-            <div class="display">Message ici :
-                <ul>
-                    {% for message in messages %}
-                        <li>
-                            {% if message.from_id != id %}
-                                <div class="in message"> {{ message.content }} </div>
-                            {% elif message.from_id == id %}
-                                <div class="out message"> {{ message.content }} </div>
-                            {% endif %}
-
-                        </li>
-                    {% endfor %}
+            <div class="display">Your messages :
+                <ul id="chat" onload="ajax()">
                     <span id="down"></span>
                 </ul>
 
@@ -32,16 +22,41 @@
 
 
             <div class="input">
-                <form method="post">
+                <form method="post" autocomplete="off">
                     <input type="text" name="text" placeholder="type here" autofocus>
                     <button type="submit" name="btn" value="send">send</button>
                 </form>
             </div>
-            <a href="/conv">Retour</a>
+            <a href="/conv">Back</a>
             {#--------------------------------------------------------#}
 
         </div>
     </div>
+
+    <script>
+        function ajax() {
+            var req = new XMLHttpRequest();
+
+
+            req.onreadystatechange = function () {
+                if (req.readyState === 4 && req.status === 200) {
+                    document.getElementById('chat').innerHTML = req.responseText;
+                }
+            }
+            req.open('POST', '/chatajax', true);
+            req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            {#var data = "btn=send" + '&text=' + ""#}
+            {#req.send(data);#}
+            req.send();
+
+        }
+
+        setInterval(function () {
+            ajax()
+        }, 10);
+    </script>
+
+
 
 {% endblock %}
 

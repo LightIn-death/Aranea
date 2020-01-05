@@ -192,7 +192,17 @@ def message():
                 session["rel_id"] = request.form['rel_id']
             rel_id = session["rel_id"]
         messages = Messages.query.filter_by(in_relation_id=rel_id).all()
-        return render_template("private/message.html", messages=messages, id=session['id'])
+        return render_template("private/message.html")
+
+
+@app.route("/chatajax", methods=["GET", "POST"])
+def chatajax():
+    if session.get('auth') is None:
+        return None
+    else:
+        rel_id = session["rel_id"]
+        messages = Messages.query.filter_by(in_relation_id=rel_id).all()
+        return render_template("private/chatajax.html", messages=messages, id=session['id'])
 
 
 @app.route("/logout/")
@@ -250,7 +260,7 @@ def Register():
 
 @app.route("/profile/")
 def profile():
-    return render_template("private/profile.html")
+    return render_template("private/profile.html", session=session)
 
 
 # ----------------------------------------------------------------------------  ERROR HTTP --------------------------------- +
@@ -264,4 +274,4 @@ def page_not_found(e):
 # ----------------------------------------------------------------------------  LAUNCH APP --------------------------------- +
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host=CONFIG.app_Host, port=CONFIG.app_Port)
