@@ -170,4 +170,6 @@ input {
 
 }
 
-
+li > ul > * {
+    margin-left: 50px;
+}

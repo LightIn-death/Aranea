@@ -262,6 +262,9 @@ def Register():
 def profile():
     return render_template("private/profile.html", session=session)
 
+@app.route("/about/")
+def about():
+    return render_template("public/about.html")
 
 # ----------------------------------------------------------------------------  ERROR HTTP --------------------------------- +
 

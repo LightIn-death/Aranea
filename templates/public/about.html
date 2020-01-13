@@ -1,0 +1,88 @@
+{# -------------------------------------------------------------------------
+HEAD ---------------------------------------------------------------------------
+#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0,maximum-scale=2.0,user-scalable=yes" name="viewport"/>
+    <meta content="A New Social Network. ARANEA" name="description"/>
+
+    <script src="https://kit.fontawesome.com/da7397688c.js" crossorigin="anonymous"></script>
+
+    <link href="{{ url_for('static',filename='img/logo.svg' ) }}" rel="icon"/>
+    <link
+            href="{{ url_for('static',filename='css/wellcome.css' ) }}"
+            rel="stylesheet"
+    />
+
+    <title>&ndash; A propos de moi &ndash;</title>
+</head>
+<body>
+{# -------------------------------------- HEADER
+    --------------------------------------------- #}
+
+<header>
+    <a href="/" id="logo">
+        <img src="../static/img/logo.svg" alt="logo"/>
+        <h1>AraneA</h1>
+    </a>
+
+</header>
+
+
+{# -------------------------------------- CONTENT
+    --------------------------------------------- #}
+
+<div id="content">
+
+    <img id="avatar" src="{{ url_for('static',filename='img/moi.png' ) }}" alt="Breval Le FLoch">
+
+    <h2>Bréval Le Floch</h2>
+
+
+    <h3>An IT student</h3>
+
+    <p>Skills :</p>
+    <ul>
+        <li>test
+            <ul>
+                <li>tes1</li>
+                <li>test2</li>
+                <li>teste3</li>
+                <li>tes4</li>
+            </ul>
+        </li>
+        <li>raf</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <p> ^~^ That's the Idea !</p>
+
+    <h3>How it work ?</h3>
+
+    <p> Aranea is a social website created for meet stranger based on
+        your mood.
+
+        Aranea will ask you a form within 3 questions, and based on your result, we will put
+        you in contact with another user around the earth.</p>
+
+
+    <h3>Alpha ?</h3>
+    <p> Now, i tried to make it, but i'm a student and i'm coding on my free time, then the site dont work properly for
+        now ! But i will try to improve it ! ^x^</p>
+</div>
+
+
+{# -------------------------------------- FOOTER
+    --------------------------------------------- #} {#
+    -------------------------------------- END
+    --------------------------------------------- #}
+</body>
+</html>
+
+
